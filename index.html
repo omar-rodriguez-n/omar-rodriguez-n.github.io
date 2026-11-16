@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Omar Rodríguez Nieblas | Mechatronics engineering portfolio</title>
+<meta name="description" content="Mechatronics engineering student at Universidad Iberoamericana, Mexico City. Control, system modeling, embedded systems and IoT projects tested on real hardware.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=Barlow+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F3F5F7;
+    --ink: #18212C;
+    --muted: #56616E;
+    --rule: #D3D9DF;
+    --grid: #E2E6EA;
+    --trace: #0072BD;
+    --ref: #D95319;
+    --wash: #E8EEF3;
+    --measure: 66ch;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Barlow", "Helvetica Neue", Arial, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.55;
+    font-variant-numeric: tabular-nums;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--trace); text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
+  a:hover { text-decoration-thickness: 2px; }
+  a:focus-visible { outline: 2px solid var(--trace); outline-offset: 3px; border-radius: 2px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* Header */
+  .top {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 16px; flex-wrap: wrap;
+    padding-top: 28px; padding-bottom: 8px;
+    font-weight: 500;
+  }
+  .top .home { color: var(--ink); text-decoration: none; }
+  .top nav { display: flex; gap: 22px; flex-wrap: wrap; }
+  .top nav a { color: var(--muted); text-decoration: none; }
+  .top nav a:hover { color: var(--ink); }
+
+  /* Hero */
+  .hero { padding-top: 56px; }
+  .hero h1 {
+    font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+    font-weight: 600;
+    font-size: clamp(3rem, 10vw, 7.25rem);
+    line-height: 0.92;
+    letter-spacing: -0.01em;
+    margin: 0;
+    max-width: 11ch;
+  }
+  .plot { display: block; width: 100%; height: auto; margin: 28px 0 8px; overflow: visible; }
+  .plot .gridline { stroke: var(--grid); stroke-width: 1; }
+  .plot .axis { stroke: var(--muted); stroke-width: 1.25; }
+  .plot .ref { stroke: var(--ref); stroke-width: 1.75; stroke-dasharray: 7 6; fill: none; }
+  .plot .resp { stroke: var(--trace); stroke-width: 3; fill: none; stroke-linejoin: round; stroke-linecap: round; }
+  .plot text { font-family: "Barlow", sans-serif; font-style: italic; font-size: 17px; }
+  .plot .lab-ref { fill: var(--ref); }
+  .plot .lab-resp { fill: var(--trace); }
+  @media (prefers-reduced-motion: no-preference) {
+    .plot .resp { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1.8s cubic-bezier(.25,.7,.3,1) .25s forwards; }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+  }
+  .intro {
+    display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    gap: 40px; align-items: start; padding-bottom: 72px;
+  }
+  .intro p { margin: 0 0 12px; max-width: var(--measure); }
+  .intro .lede { font-size: 1.3rem; line-height: 1.45; }
+  .contact-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+  .contact-list li { border-bottom: 1px solid var(--rule); padding: 9px 0; display: flex; justify-content: space-between; gap: 12px; }
+  .contact-list span { color: var(--muted); }
+
+  /* Sections */
+  section { padding: 64px 0; border-top: 1px solid var(--rule); }
+  h2 {
+    font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+    font-weight: 600; font-size: 2.6rem; line-height: 1; margin: 0 0 36px;
+  }
+  h3 { font-size: 1.05rem; font-weight: 600; color: var(--muted); margin: 56px 0 4px; }
+  h4 { font-size: 1.35rem; line-height: 1.25; font-weight: 600; margin: 0 0 6px; }
+  .ctx { color: var(--muted); margin: 0; font-size: 0.98rem; }
+
+  /* Featured project */
+  .featured {
+    background:
+      linear-gradient(var(--grid) 1px, transparent 1px) 0 0 / 100% 32px,
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0 / 32px 100%,
+      #FFFFFF;
+    border: 1px solid var(--rule);
+    padding: 36px 36px 30px;
+  }
+  .featured h4 { font-size: 1.75rem; max-width: 26ch; }
+  .featured .ctx { margin-bottom: 26px; }
+  .split { display: grid; grid-template-columns: 1.35fr 1fr; gap: 40px; }
+  .split h5 { font-size: 1rem; font-weight: 600; margin: 0 0 10px; padding-bottom: 6px; border-bottom: 2px solid var(--trace); }
+  .split .team h5 { border-bottom-color: var(--muted); }
+  .split ul { margin: 0; padding-left: 1.1em; }
+  .split li { margin-bottom: 9px; max-width: var(--measure); }
+  .featured, .featured p, .featured li { background-clip: padding-box; }
+  .split > div { background: rgba(255,255,255,0.86); }
+  .datasheet { margin: 26px 0 0; display: grid; grid-template-columns: max-content 1fr; border-top: 1px solid var(--rule); background: rgba(255,255,255,0.86); }
+  .datasheet dt, .datasheet dd { margin: 0; padding: 8px 0; border-bottom: 1px solid var(--rule); }
+  .datasheet dt { font-weight: 600; padding-right: 24px; color: var(--trace); font-size: 1.15rem; }
+  .datasheet dt.team { color: var(--muted); }
+  .datasheet dd { color: var(--ink); }
+
+  /* Project rows */
+  .project {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.55fr);
+    gap: 32px; padding: 26px 0; border-bottom: 1px solid var(--rule);
+  }
+  .group h3 + .project { border-top: 1px solid var(--rule); margin-top: 12px; }
+  .project p { margin: 0 0 10px; max-width: var(--measure); }
+  .stack { color: var(--muted); font-size: 0.98rem; }
+  .links { display: flex; gap: 20px; flex-wrap: wrap; margin: 4px 0 0; }
+  .status { display: inline-block; margin-top: 8px; padding: 1px 8px; border: 1px solid var(--ref); color: #A63D0F; font-size: 0.9rem; border-radius: 3px; }
+  .note { font-size: 0.95rem; color: var(--muted); }
+
+  /* Skills */
+  .skills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 48px; margin: 0; }
+  .skills div { padding: 14px 0; border-top: 1px solid var(--rule); }
+  .skills dt { font-weight: 600; margin-bottom: 2px; }
+  .skills dd { margin: 0; color: var(--muted); }
+  .skills dd a { color: var(--muted); }
+
+  /* Also */
+  .also { margin: 0; padding-left: 1.1em; }
+  .also li { margin-bottom: 8px; max-width: var(--measure); }
+
+  footer { border-top: 1px solid var(--rule); padding: 28px 0 48px; color: var(--muted); font-size: 0.95rem; }
+
+  @media (max-width: 760px) {
+    .intro, .split, .project, .skills { grid-template-columns: 1fr; }
+    .intro { gap: 24px; }
+    .project { gap: 10px; }
+    .featured { padding: 24px 18px; }
+    .datasheet { grid-template-columns: 1fr; }
+    .datasheet dt { border-bottom: 0; padding-bottom: 0; }
+    .hero { padding-top: 32px; }
+    .plot text { font-size: 40px; }
+    .plot .resp { stroke-width: 6; }
+    .plot .ref { stroke-width: 3.5; stroke-dasharray: 14 12; }
+    .plot .axis { stroke-width: 2.5; }
+    section { padding: 48px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="wrap top">
+  <a class="home" href="#">Omar Rodríguez Nieblas</a>
+  <nav aria-label="Main">
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+    <a href="cv.pdf">Résumé</a>
+  </nav>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <h1>Omar Rodríguez Nieblas</h1>
+
+    <svg class="plot" viewBox="0 0 1000 230" role="img" aria-labelledby="plot-title">
+      <title id="plot-title">A step response: the output y(t) rises, overshoots the reference r(t) once and settles on it.</title>
+      <g aria-hidden="true">
+        <line class="gridline" x1="0" y1="75" x2="1000" y2="75"/>
+        <line class="gridline" x1="0" y1="140" x2="1000" y2="140"/>
+        <line class="gridline" x1="90" y1="10" x2="90" y2="205"/>
+        <line class="gridline" x1="272" y1="10" x2="272" y2="205"/>
+        <line class="gridline" x1="454" y1="10" x2="454" y2="205"/>
+        <line class="gridline" x1="636" y1="10" x2="636" y2="205"/>
+        <line class="gridline" x1="818" y1="10" x2="818" y2="205"/>
+        <line class="axis" x1="0" y1="205" x2="1000" y2="205"/>
+        <path class="ref" d="M0,205 L90,205 L90,75 L1000,75"/>
+        <path class="resp" pathLength="1" d="M0.0,205.0 L90.0,205.0 L93.5,204.4 L97.0,202.5 L100.5,199.5 L104.0,195.6 L107.5,190.6 L111.0,184.9 L114.5,178.5 L118.0,171.5 L121.5,163.9 L125.0,156.0 L128.5,147.8 L132.0,139.4 L135.5,130.8 L139.0,122.3 L142.5,113.9 L146.0,105.6 L149.5,97.5 L153.0,89.7 L156.5,82.2 L160.0,75.1 L163.5,68.5 L167.0,62.3 L170.5,56.7 L174.0,51.5 L177.5,47.0 L181.0,42.9 L184.5,39.5 L188.0,36.6 L191.5,34.2 L195.0,32.4 L198.5,31.1 L202.0,30.3 L205.5,30.0 L209.0,30.2 L212.5,30.7 L216.0,31.7 L219.5,33.0 L223.0,34.7 L226.5,36.6 L230.0,38.8 L233.5,41.2 L237.0,43.8 L240.5,46.5 L244.0,49.4 L247.5,52.3 L251.0,55.2 L254.5,58.2 L258.0,61.1 L261.5,64.0 L265.0,66.8 L268.5,69.5 L272.0,72.1 L275.5,74.6 L279.0,76.9 L282.5,79.1 L286.0,81.0 L289.5,82.8 L293.0,84.5 L296.5,85.9 L300.0,87.1 L303.5,88.2 L307.0,89.0 L310.5,89.7 L314.0,90.1 L317.5,90.4 L321.0,90.6 L324.5,90.5 L328.0,90.4 L331.5,90.0 L335.0,89.6 L338.5,89.0 L342.0,88.4 L345.5,87.6 L349.0,86.8 L352.5,85.9 L356.0,85.0 L359.5,84.0 L363.0,83.0 L366.5,82.0 L370.0,81.0 L373.5,80.0 L377.0,79.0 L380.5,78.0 L384.0,77.0 L387.5,76.1 L391.0,75.3 L394.5,74.5 L398.0,73.7 L401.5,73.0 L405.0,72.4 L408.5,71.8 L412.0,71.3 L415.5,70.9 L419.0,70.5 L422.5,70.2 L426.0,70.0 L429.5,69.8 L433.0,69.7 L436.5,69.6 L440.0,69.6 L443.5,69.7 L447.0,69.8 L450.5,69.9 L454.0,70.1 L457.5,70.3 L461.0,70.6 L464.5,70.9 L468.0,71.2 L471.5,71.5 L475.0,71.8 L478.5,72.2 L482.0,72.5 L485.5,72.9 L489.0,73.2 L492.5,73.6 L496.0,73.9 L499.5,74.2 L503.0,74.6 L506.5,74.9 L510.0,75.1 L513.5,75.4 L517.0,75.7 L520.5,75.9 L524.0,76.1 L527.5,76.3 L531.0,76.4 L534.5,76.5 L538.0,76.6 L541.5,76.7 L545.0,76.8 L548.5,76.8 L552.0,76.9 L555.5,76.9 L559.0,76.8 L562.5,76.8 L566.0,76.8 L569.5,76.7 L573.0,76.6 L576.5,76.5 L580.0,76.4 L583.5,76.3 L587.0,76.2 L590.5,76.1 L594.0,76.0 L597.5,75.9 L601.0,75.8 L604.5,75.6 L608.0,75.5 L611.5,75.4 L615.0,75.3 L618.5,75.2 L622.0,75.1 L625.5,75.0 L629.0,74.9 L632.5,74.8 L636.0,74.7 L639.5,74.6 L643.0,74.6 L646.5,74.5 L650.0,74.5 L653.5,74.4 L657.0,74.4 L660.5,74.4 L664.0,74.4 L667.5,74.4 L671.0,74.4 L674.5,74.4 L678.0,74.4 L681.5,74.4 L685.0,74.4 L688.5,74.4 L692.0,74.5 L695.5,74.5 L699.0,74.5 L702.5,74.6 L706.0,74.6 L709.5,74.6 L713.0,74.7 L716.5,74.7 L720.0,74.8 L723.5,74.8 L727.0,74.9 L730.5,74.9 L734.0,74.9 L737.5,75.0 L741.0,75.0 L744.5,75.0 L748.0,75.1 L751.5,75.1 L755.0,75.1 L758.5,75.1 L762.0,75.2 L765.5,75.2 L769.0,75.2 L772.5,75.2 L776.0,75.2 L779.5,75.2 L783.0,75.2 L786.5,75.2 L790.0,75.2 L793.5,75.2 L797.0,75.2 L800.5,75.2 L804.0,75.2 L807.5,75.2 L811.0,75.2 L814.5,75.2 L818.0,75.2 L821.5,75.1 L825.0,75.1 L828.5,75.1 L832.0,75.1 L835.5,75.1 L839.0,75.1 L842.5,75.1 L846.0,75.0 L849.5,75.0 L853.0,75.0 L856.5,75.0 L860.0,75.0 L863.5,75.0 L867.0,75.0 L870.5,75.0 L874.0,75.0 L877.5,74.9 L881.0,74.9 L884.5,74.9 L888.0,74.9 L891.5,74.9 L895.0,74.9 L898.5,74.9 L902.0,74.9 L905.5,74.9 L909.0,74.9 L912.5,74.9 L916.0,74.9 L919.5,74.9 L923.0,74.9 L926.5,74.9 L930.0,74.9 L933.5,74.9 L937.0,75.0 L940.5,75.0 L944.0,75.0 L947.5,75.0 L951.0,75.0 L954.5,75.0 L958.0,75.0 L961.5,75.0 L965.0,75.0 L968.5,75.0 L972.0,75.0 L975.5,75.0 L979.0,75.0 L982.5,75.0 L986.0,75.0 L989.5,75.0 L993.0,75.0 L996.5,75.0 L1000.0,75.0"/>
+        <text class="lab-ref" x="100" y="66">r(t)</text>
+        <text class="lab-resp" x="228" y="24">y(t)</text>
+      </g>
+    </svg>
+
+    <div class="intro">
+      <div>
+        <p class="lede">Mechatronics engineering student at Universidad Iberoamericana (IBERO) in Mexico City. I build models of physical systems, design controllers for them and test them on real hardware.</p>
+        <p>Graduating in December 2027. Open to part-time, remote roles in data, machine learning, IoT (Internet of Things) and control.</p>
+      </div>
+      <ul class="contact-list" id="contact-top">
+        <li><span>Email</span><a href="mailto:ronieomar@gmail.com">ronieomar@gmail.com</a></li>
+        <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/omar-rodr%C3%ADguez-nieblas-8bb22a287">omar-rodríguez-nieblas</a></li>
+        <li><span>GitHub</span><a data-github-profile href="https://github.com/">GitHub profile</a></li>
+        <li><span>Languages</span>Spanish, English (advanced)</li>
+      </ul>
+    </div>
+  </div>
+
+  <section id="projects">
+    <div class="wrap">
+      <h2>Projects</h2>
+
+      <!-- FEATURED -->
+      <article class="featured" id="robomaster">
+        <h4>Neural-network control of an omnidirectional robot</h4>
+        <p class="ctx">RoboMaster S1 with VICON motion capture. Intelligent Control course, IBERO, fall 2026. Team of five.</p>
+
+        <div class="split">
+          <div>
+            <h5>My part</h5>
+            <ul>
+              <li>Wrote the synchronized data acquisition in Python: VICON read at 100 Hz in a parallel thread, the robot commanded at 20 Hz, and a six-phase excitation protocol (calibration, sync marks, asterisk, spiral, filtered noise) inside a safety geofence. About 530 lines.</li>
+              <li>Recorded a 4,344-sample dataset, about 218 s of testing.</li>
+              <li>Checked data quality: the mounting angle of the VICON marker, a 0.10 s plant delay and the speed limits the robot can actually reach.</li>
+              <li>Identified the system with NARX (nonlinear autoregressive with exogenous inputs) and feedforward neural networks in MATLAB (Matrix Laboratory). Found that an R above 0.998 was inflated by comparing it against a persistence predictor.</li>
+            </ul>
+          </div>
+          <div class="team">
+            <h5>Team result</h5>
+            <ul>
+              <li>A closed-loop neural controller, with PyTorch networks trained by my teammates, drove the robot to a target point with 1.18 cm of error.</li>
+              <li>It followed a 40 cm radius circle with a mean radial error of 2.25 cm (RMSE (root mean square error) 3.06 cm, maximum 8.11 cm).</li>
+            </ul>
+          </div>
+        </div>
+
+        <dl class="datasheet">
+          <dt>4,344</dt><dd>samples in the dataset I recorded</dd>
+          <dt>1.44–1.75×</dt><dd>lower free-simulation error of my feedforward model with an input window, compared with the kinematic model</dd>
+          <dt class="team">2.25 cm</dt><dd>mean radial error of the team’s closed-loop controller on a 40 cm circle</dd>
+        </dl>
+
+        <p class="links" style="margin-top:18px">
+          <a href="https://recandano.github.io/control-rna-robomaster/">Team project page</a>
+          <a href="https://github.com/recandano/control-rna-robomaster">Team repository</a>
+          <a data-repo="robomaster-narx-identification" href="#">My acquisition and identification code</a>
+        </p>
+      </article>
+
+      <!-- CONTROL -->
+      <div class="group">
+        <h3>Control and modeling</h3>
+
+        <article class="project" id="aero">
+          <div>
+            <h4>Reinforcement learning on the Quanser Aero 2</h4>
+            <p class="ctx">Intelligent Control final project, IBERO. Team project.</p>
+            <span class="status">In progress</span>
+          </div>
+          <div>
+            <p>The official digital twin did not work, so we built our own in Python (Gymnasium) and MATLAB with help from an AI (artificial intelligence) assistant, Claude. We train a DQN (Deep Q-Network) agent in simulation and test it on the physical Aero.</p>
+            <p>In November 2026 the sign checks and the first DQN test on the real hardware behaved as expected. The current stage extends the work to two degrees of freedom, with one agent tracking references on both pitch and yaw.</p>
+            <p class="stack">Python, Gymnasium, MATLAB, Quanser Aero 2</p>
+          </div>
+        </article>
+
+        <article class="project" id="pendulum">
+          <div>
+            <h4>Inverted pendulum with optimal control and a state observer</h4>
+            <p class="ctx">Advanced Control and Robotics, IBERO. Team project on a Quanser QUBE-Servo 3.</p>
+          </div>
+          <div>
+            <p>State-space model of the pendulum, an LQR (linear quadratic regulator) controller that balances it on the physical plant, and a Luenberger observer running on the real encoder and tachometer signals.</p>
+            <p class="stack">MATLAB, Simulink, Quanser QUBE-Servo 3</p>
+            <p class="links"><a href="https://vmolvera.github.io/Proyecto-Pendulo-Invertido-/">Team project page</a></p>
+          </div>
+        </article>
+
+        <article class="project" id="scara">
+          <div>
+            <h4>Two-joint robot arm with position control</h4>
+            <p class="ctx">Control laboratory, IBERO.</p>
+          </div>
+          <div>
+            <p>Two-joint SCARA (selective compliance articulated robot arm) with encoders and PID (proportional-integral-derivative) position control, plus a graphical interface to set target angles. Accuracy of ±2°. Parts designed in Autodesk Inventor; report written in LaTeX.</p>
+            <p class="stack">MicroPython, ESP32, Autodesk Inventor</p>
+          </div>
+        </article>
+      </div>
+
+      <!-- EMBEDDED / IOT -->
+      <div class="group">
+        <h3>Embedded systems and IoT</h3>
+
+        <article class="project" id="iot">
+          <div>
+            <h4>Environmental monitoring network</h4>
+            <p class="ctx">Internet of Things course, IBERO.</p>
+          </div>
+          <div>
+            <p>A Raspberry Pi 5 acts as the server, running an MQTT (Message Queuing Telemetry Transport) broker (Mosquitto), Node-RED and MariaDB on a segmented network configured with NetworkManager and nftables.</p>
+            <p>An ESP32 node in MicroPython publishes temperature, humidity and pressure from a BME280 sensor, plus light from an LDR (light-dependent resistor). Node-RED rules combine those readings with the Open-Meteo forecast API (application programming interface) and log the data.</p>
+            <p class="stack">Raspberry Pi 5, ESP32, MicroPython, Mosquitto, Node-RED, MariaDB, nftables</p>
+            <p class="links"><a data-repo="iot-environmental-monitoring" href="#">Code and setup</a></p>
+          </div>
+        </article>
+
+        <article class="project" id="fpga">
+          <div>
+            <h4>Wall-following robot built in digital logic</h4>
+            <p class="ctx">Nexys A7-100T board (Artix-7).</p>
+          </div>
+          <div>
+            <p>An autonomous robot written in VHDL (Very High Speed Integrated Circuit Hardware Description Language) for an FPGA (field-programmable gate array). It drives four DC (direct current) motors through L298N and DBH-12V H-bridges, follows the left wall at 20 cm with two ultrasonic sensors and turns right at obstacles.</p>
+            <p>Key fixes: input synchronizers against metastability, corrected distance scaling, a valid signal per sensor, filters over consecutive readings and PWM (pulse-width modulation) speed zones. It boots on its own from SPI (Serial Peripheral Interface) flash.</p>
+            <p class="stack">VHDL, Vivado, Nexys A7-100T, HY-SRF05, HC-SR04</p>
+            <p class="links"><a data-repo="fpga-wall-following-robot" href="#">VHDL source</a></p>
+          </div>
+        </article>
+
+        <article class="project" id="tracking">
+          <div>
+            <h4>Person following with computer vision</h4>
+            <p class="ctx">RoboMaster S1. Team project.</p>
+          </div>
+          <div>
+            <p>YOLOv8n (You Only Look Once) runs on the robot’s live video. The turret scans until it finds a person, and the chassis keeps its distance: it moves forward when the person is far and backs up when they get close.</p>
+            <p class="stack">Python, YOLOv8n, RoboMaster SDK (software development kit)</p>
+          </div>
+        </article>
+      </div>
+
+      <!-- AUTOMATION / NETWORKS / SOFTWARE -->
+      <div class="group">
+        <h3>Automation, networks and software</h3>
+
+        <article class="project" id="plc">
+          <div>
+            <h4>Industrial process automation</h4>
+            <p class="ctx">Team laboratory work.</p>
+          </div>
+          <div>
+            <p>Ladder logic for conveyor belts, three-phase motors and electro-pneumatic systems on Siemens, Allen-Bradley and Omron PLCs (programmable logic controllers). We simulated and validated each program before the physical build, then wired sensors, contactors and relays.</p>
+            <p class="stack">Siemens TIA Portal, Allen-Bradley, Omron, ladder logic</p>
+          </div>
+        </article>
+
+        <article class="project" id="networks">
+          <div>
+            <h4>Subnetting and routing across three computers</h4>
+            <p class="ctx">Networks course, IBERO.</p>
+          </div>
+          <div>
+            <p>A /25 subnet split with one computer acting as the router, forwarding between Ethernet and Wi-Fi, then /24 segmentation across different networks. Solved an ICMP (Internet Control Message Protocol) block in the firewall, a duplicate IP (Internet Protocol) address and multiple-gateway warnings in Windows.</p>
+          </div>
+        </article>
+
+        <article class="project" id="pokedex">
+          <div>
+            <h4>Desktop database app in Java</h4>
+            <p class="ctx">Pokédex built in NetBeans with MySQL, 2023.</p>
+          </div>
+          <div>
+            <p>Three SQL (Structured Query Language) queries on the same <code>Statement</code> object were silently closing the <code>ResultSet</code>. I fixed it by merging them into a single query with <code>SUM</code> and <code>IN</code>.</p>
+            <p class="stack">Java, MySQL, NetBeans</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <h2>Skills</h2>
+      <dl class="skills">
+        <div><dt>Control and modeling</dt><dd>PID, LQR, state observers, system identification. <a href="#pendulum">Pendulum</a>, <a href="#scara">SCARA</a>, <a href="#robomaster">RoboMaster</a></dd></div>
+        <div><dt>Neural networks and learning</dt><dd>NARX and feedforward networks for system identification; reinforcement learning in progress. <a href="#robomaster">RoboMaster</a>, <a href="#aero">Aero 2</a></dd></div>
+        <div><dt>Programming</dt><dd>Python, MATLAB and Simulink, MicroPython, C and C++, Java, JavaScript, SQL with MySQL and MariaDB</dd></div>
+        <div><dt>Embedded and IoT</dt><dd>ESP32, Raspberry Pi, MQTT, Node-RED, VHDL on FPGAs with Vivado. <a href="#iot">IoT</a>, <a href="#fpga">FPGA</a></dd></div>
+        <div><dt>Industrial automation</dt><dd>Siemens TIA Portal, Allen-Bradley, Omron, ladder logic. <a href="#plc">PLC</a></dd></div>
+        <div><dt>Mechanical design</dt><dd>CAD (computer-aided design) in Autodesk Inventor, SolidWorks, CATIA and Siemens NX</dd></div>
+        <div><dt>Languages</dt><dd>Spanish, native. English, advanced: Cambridge C1 Advanced.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="also">
+    <div class="wrap">
+      <h2>Also built</h2>
+      <ul class="also">
+        <li><strong>Bitácora</strong>, a personal tracker web app in a single HTML (HyperText Markup Language) file with IndexedDB and no dependencies: daily log, meals, gym and statistics.</li>
+        <li>An agent-based predator-prey simulation in MATLAB.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <h2>Contact</h2>
+      <p style="max-width:var(--measure);margin:0 0 18px">The fastest way to reach me is by email. I reply in English or Spanish.</p>
+      <ul class="contact-list" style="max-width:560px">
+        <li><span>Email</span><a href="mailto:ronieomar@gmail.com">ronieomar@gmail.com</a></li>
+        <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/omar-rodr%C3%ADguez-nieblas-8bb22a287">omar-rodríguez-nieblas</a></li>
+        <li><span>Résumé</span><a href="cv.pdf">Download the PDF</a></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Omar Rodríguez Nieblas, Mexico City. Last updated November 2026.</div>
+</footer>
+
+<script>
+  // Builds GitHub links from the site address (yourname.github.io), so nothing needs editing.
+  // If you preview the file locally, set FALLBACK_USER to your GitHub username.
+  (function () {
+    var FALLBACK_USER = "";
+    var host = location.hostname || "";
+    var user = /\.github\.io$/.test(host) ? host.split(".")[0] : FALLBACK_USER;
+    var base = "https://github.com/" + (user ? user + "/" : "");
+    document.querySelectorAll("[data-repo]").forEach(function (a) {
+      a.href = user ? base + a.getAttribute("data-repo") : "https://github.com/";
+    });
+    document.querySelectorAll("[data-github-profile]").forEach(function (a) {
+      a.href = base;
+      if (user) a.textContent = user;
+    });
+  })();
+</script>
+</body>
+</html>
